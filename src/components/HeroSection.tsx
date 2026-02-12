@@ -4,7 +4,6 @@ import heroImg from "@/assets/face-mask.jpg";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
       <div className="absolute inset-0">
         <img
           src={heroImg}
@@ -14,8 +13,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-background" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center max-w-3xl mx-auto px-6">
+      <div className="relative z-10 text-center max-w-3xl mx-auto px-6 pt-16">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -31,9 +29,9 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.5 }}
           className="font-display text-5xl md:text-7xl lg:text-8xl font-medium text-primary-foreground leading-[1.1] mb-6 text-gold-glow"
         >
-          Where Beauty
+          Luxury Beauty,
           <br />
-          <em className="italic font-normal">Comes to Life</em>
+          <em className="italic font-normal">Perfected</em>
         </motion.h1>
 
         <motion.div
@@ -49,21 +47,10 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 1.2 }}
           className="font-body text-xl md:text-2xl text-primary-foreground/80 leading-relaxed max-w-xl mx-auto"
         >
-          An elevated experience of elegance, confidence, and self-expression
+          Premium makeup and treatments designed to enhance your natural elegance
         </motion.p>
-
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.6 }}
-          whileHover={{ scale: 1.03 }}
-          className="mt-12 px-10 py-4 border border-primary-foreground/40 text-primary-foreground font-sans-ui text-xs tracking-[0.3em] uppercase hover:bg-primary-foreground/10 transition-colors duration-500"
-        >
-          Discover More
-        </motion.button>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
