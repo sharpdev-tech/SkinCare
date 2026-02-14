@@ -1,27 +1,39 @@
 import { motion } from "framer-motion";
-import { Suspense, lazy } from "react";
+import { useEffect, useRef, useState } from "react";
 import heroImg from "@/assets/face-mask.jpg";
 
-const Spline = lazy(() => import("@splinetool/react-spline"));
-
 const HeroSection = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [splineLoaded, setSplineLoaded] = useState(false);
+
+  useEffect(() => {
+    // Load Spline viewer script dynamically
+    const script = document.createElement("script");
+    script.type = "module";
+    script.src = "https://unpkg.com/@splinetool/viewer@1.12.57/build/spline-viewer.js";
+    script.onload = () => setSplineLoaded(true);
+    document.head.appendChild(script);
+    return () => { document.head.removeChild(script); };
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0">
-        <Suspense
-          fallback={
-            <img
-              src={heroImg}
-              alt="Luxury skincare application"
-              className="w-full h-full object-cover"
-            />
-          }
-        >
-          <Spline
-            scene="https://prod.spline.design/oiuenNvbJBhB5tM8/scene.splinecode"
-            className="w-full h-full"
+      <div className="absolute inset-0" ref={containerRef}>
+        {!splineLoaded && (
+          <img
+            src={heroImg}
+            alt="Luxury skincare application"
+            className="w-full h-full object-cover"
           />
-        </Suspense>
+        )}
+        {splineLoaded && (
+          <div
+            className="w-full h-full"
+            dangerouslySetInnerHTML={{
+              __html: `<spline-viewer url="https://prod.spline.design/oiuenNvbJBhB5tM8/scene.splinecode" style="width:100%;height:100%"></spline-viewer>`,
+            }}
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-background pointer-events-none" />
       </div>
 
