@@ -1,16 +1,28 @@
 import { motion } from "framer-motion";
+import { Suspense, lazy } from "react";
 import heroImg from "@/assets/face-mask.jpg";
+
+const Spline = lazy(() => import("@splinetool/react-spline"));
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
-        <img
-          src={heroImg}
-          alt="Luxury skincare application"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-background" />
+        <Suspense
+          fallback={
+            <img
+              src={heroImg}
+              alt="Luxury skincare application"
+              className="w-full h-full object-cover"
+            />
+          }
+        >
+          <Spline
+            scene="https://prod.spline.design/oiuenNvbJBhB5tM8/scene.splinecode"
+            className="w-full h-full"
+          />
+        </Suspense>
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-background pointer-events-none" />
       </div>
 
       <div className="relative z-10 text-center max-w-3xl mx-auto px-6 pt-16">
