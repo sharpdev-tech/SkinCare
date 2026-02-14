@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
+import SkincareSimulation from "@/components/SkincareSimulation";
 import Footer from "@/components/Footer";
 import skinCareImg from "@/assets/skin-care.jpg";
 import { useRef } from "react";
@@ -73,6 +74,7 @@ const Index = () => {
       </section>
 
       <FeaturesSection />
+      <SkincareSimulation />
 
       {/* CTA Section */}
       <section className="py-40 px-6 bg-background text-center">
