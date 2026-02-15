@@ -5,9 +5,9 @@ import Footer from "@/components/Footer";
 import faceMaskImg from "@/assets/face-mask.jpg";
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "hello@luxurymakeup.com" },
-  { icon: Phone, label: "Phone", value: "+1 (800) 555-0199" },
-  { icon: MapPin, label: "Location", value: "New York, NY" },
+  { icon: Mail, label: "Email", value: "hello@amaraskin.com" },
+  { icon: Phone, label: "Phone", value: "+383 045 123 123" },
+  { icon: MapPin, label: "Location", value: "Kosovo" },
 ];
 
 const Contact = () => {

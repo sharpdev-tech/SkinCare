@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <footer className="py-16 px-6 bg-foreground text-primary-foreground/60">
       <div className="max-w-6xl mx-auto text-center">
-        <img src={logo} alt="Amara Skin" className="h-12 mx-auto mb-2 brightness-0 invert opacity-80" />
+        <img src={logo} alt="Amara Skin" className="h-16 mx-auto mb-2 brightness-0 invert opacity-80" />
         <p className="font-body text-sm tracking-wider mb-8">
           Where Beauty Comes to Life
         </p>
