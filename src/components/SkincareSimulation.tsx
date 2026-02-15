@@ -9,6 +9,7 @@ import skinNoWrinkles from "@/assets/skin-no-wrinkles.jpg";
 import skinClear from "@/assets/skin-clear.jpg";
 import skinAcne from "@/assets/skin-acne.png";
 import skinDarkCircles from "@/assets/skin-dark-circles.jpg";
+import skinDry from "@/assets/skin-dry.png";
 
 import productAntiWrinkle from "@/assets/product-anti-wrinkle.jpg";
 import productEyeCream from "@/assets/product-eye-cream.jpg";
@@ -60,7 +61,7 @@ const products: Product[] = [
     name: "Hydrating Cream",
     description: "Mixsoon Moisturizer",
     productImage: productHydrating,
-    beforeImage: skinNatural,
+    beforeImage: skinDry,
     afterImage: skinHydrated,
     feedback: "Deeply hydrated, plump skin after 3 days*",
     area: "Full face",
