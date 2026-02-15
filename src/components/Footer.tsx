@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const footerLinks = [
   { label: "Home", path: "/" },
@@ -13,9 +14,7 @@ const Footer = () => {
   return (
     <footer className="py-16 px-6 bg-foreground text-primary-foreground/60">
       <div className="max-w-6xl mx-auto text-center">
-        <h3 className="font-display text-2xl text-primary-foreground mb-2">
-          Luxury Makeup
-        </h3>
+        <img src={logo} alt="Amara Skin" className="h-12 mx-auto mb-2 brightness-0 invert opacity-80" />
         <p className="font-body text-sm tracking-wider mb-8">
           Where Beauty Comes to Life
         </p>
@@ -34,7 +33,7 @@ const Footer = () => {
 
         <div className="w-12 h-px bg-accent mx-auto mb-8" />
         <p className="font-sans-ui text-xs tracking-wider">
-          © 2026 Luxury Makeup. All rights reserved.
+          © 2026 Amara Skin. All rights reserved.
         </p>
       </div>
     </footer>
