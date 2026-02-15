@@ -87,18 +87,21 @@ const SkincareSimulation = () => {
   const [showAfter, setShowAfter] = useState(false);
 
   // Determine which image to show:
-  // - Hovering (not clicked): show "before" (problem skin)
-  // - Clicked: show "after" (improved skin)
+  // - Hovering a different product than selected: show that product's "before" (problem skin)
+  // - Hovering the selected product or no hover with selection: show selected product's "after"
   // - Nothing: show natural skin
-  const hoveredProductObj = hoveredProduct ? products.find(p => p.id === hoveredProduct) : null;
+  const isHoveringDifferent = hoveredProduct && (!selectedProduct || hoveredProduct !== selectedProduct.id);
+  const hoveredDiffProduct = isHoveringDifferent ? products.find(p => p.id === hoveredProduct) : null;
 
-  const currentImage = hoveredProductObj
-    ? hoveredProductObj.beforeImage
+  const currentImage = hoveredDiffProduct
+    ? hoveredDiffProduct.beforeImage
     : selectedProduct
       ? selectedProduct.afterImage
-      : skinNatural;
+      : hoveredProduct
+        ? (products.find(p => p.id === hoveredProduct)?.beforeImage ?? skinNatural)
+        : skinNatural;
 
-  const isShowingAfter = !hoveredProductObj && !!selectedProduct;
+  const isShowingAfter = !hoveredDiffProduct && !!selectedProduct;
 
   const handleSelectProduct = (product: Product) => {
     setSelectedProduct(product);
@@ -230,7 +233,7 @@ const SkincareSimulation = () => {
 
                   {/* Status overlay */}
                   <AnimatePresence>
-                    {(hoveredProductObj || selectedProduct) && (
+                    {(hoveredDiffProduct || selectedProduct || hoveredProduct) && (
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -238,7 +241,7 @@ const SkincareSimulation = () => {
                         className="absolute bottom-0 left-0 right-0 glass-panel px-5 py-4"
                       >
                         <p className="font-sans-ui text-[10px] tracking-[0.3em] uppercase text-accent mb-1">
-                          {hoveredProductObj ? "Before" : "After"} — {(hoveredProductObj || selectedProduct)!.area}
+                          {hoveredDiffProduct ? "Before" : selectedProduct ? "After" : "Before"} — {(hoveredDiffProduct || selectedProduct || products.find(p => p.id === hoveredProduct))!.area}
                         </p>
                         {isShowingAfter && (
                           <p className="font-body text-sm text-foreground/80">
