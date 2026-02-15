@@ -90,8 +90,7 @@ const SkincareSimulation = () => {
   // - Hovering (not clicked): show "before" (problem skin)
   // - Clicked: show "after" (improved skin)
   // - Nothing: show natural skin
-  const hoveredOnly = hoveredProduct && (!selectedProduct || selectedProduct.id !== hoveredProduct);
-  const hoveredProductObj = hoveredOnly ? products.find(p => p.id === hoveredProduct) : null;
+  const hoveredProductObj = hoveredProduct ? products.find(p => p.id === hoveredProduct) : null;
 
   const currentImage = hoveredProductObj
     ? hoveredProductObj.beforeImage
