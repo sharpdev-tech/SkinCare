@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
+import SkincareSimulation from "@/components/SkincareSimulation";
 import spaImg from "@/assets/spa-flat-lay.jpg";
 import productsImg from "@/assets/products.jpg";
 
@@ -70,6 +71,8 @@ const Experience = () => {
           className="w-full h-full object-cover"
         />
       </motion.div>
+
+      <SkincareSimulation />
 
       <Footer />
     </main>
