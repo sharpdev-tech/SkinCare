@@ -154,7 +154,7 @@ const SkincareSimulation = () => {
             transition={{ delay: 0.5 }}
             className="font-body text-lg text-muted-foreground max-w-xl mx-auto"
           >
-            Hover and click on a product to visualize its skincare benefits
+            Each skin concern has its own solution. Click a product to see the transformation.
           </motion.p>
         </div>
 
@@ -386,12 +386,18 @@ const SkincareSimulation = () => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
+          <p className="font-body text-lg text-muted-foreground max-w-xl mx-auto mb-6">
+            This is just one of many products. Explore our full skincare collection designed for different skin needs.
+          </p>
           <Link
             to="/products"
             className="inline-block font-sans-ui text-xs tracking-[0.3em] uppercase px-8 py-4 border border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-500"
           >
-            Explore more products in our store
+            Explore our full skincare collection
           </Link>
+          <p className="font-body text-xs text-muted-foreground/40 mt-4">
+            Designed to work together as a complete skincare routine.
+          </p>
         </motion.div>
 
         {/* Disclaimer */}
