@@ -86,8 +86,8 @@ const Index = () => {
             transition={{ duration: 1 }}
             className="font-display text-4xl md:text-6xl font-medium leading-tight mb-8"
           >
-            Discover refined beauty,{" "}
-            <em className="italic font-normal text-accent">your way</em>
+            Complete skincare,{" "}
+            <em className="italic font-normal text-accent">real results</em>
           </motion.h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -102,7 +102,7 @@ const Index = () => {
                 whileHover={{ scale: 1.03 }}
                 className="px-10 py-4 bg-primary text-primary-foreground font-sans-ui text-xs tracking-[0.3em] uppercase hover:bg-primary/90 transition-colors duration-500"
               >
-                Explore Products →
+                Explore Our Full Skincare Collection →
               </motion.button>
             </Link>
             <Link to="/treatments">

@@ -47,7 +47,7 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 1.2 }}
           className="font-body text-xl md:text-2xl text-primary-foreground/80 leading-relaxed max-w-xl mx-auto"
         >
-          Premium makeup and treatments designed to enhance your natural elegance
+          Complete skincare solutions for every skin concern
         </motion.p>
       </div>
 
