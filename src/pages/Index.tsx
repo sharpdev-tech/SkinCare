@@ -1,12 +1,29 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Star } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import SkincareSimulation from "@/components/SkincareSimulation";
+import ClosingSection from "@/components/ClosingSection";
 import Footer from "@/components/Footer";
 import skinCareImg from "@/assets/skin-care.jpg";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
+
+const testimonials = [
+  {
+    quote: "My skin feels smoother, brighter, and healthier than ever.",
+    author: "Anna M.",
+  },
+  {
+    quote: "Minimal, elegant, and incredibly effective.",
+    author: "Sophia L.",
+  },
+  {
+    quote: "Luxury skincare that actually delivers results.",
+    author: "Emily R.",
+  },
+];
 
 const Index = () => {
   const introRef = useRef(null);
@@ -16,7 +33,7 @@ const Index = () => {
     <main className="overflow-x-hidden">
       <HeroSection />
 
-      {/* Intro Section */}
+      {/* Philosophy Section */}
       <section ref={introRef} className="py-32 px-6 bg-background">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -28,7 +45,7 @@ const Index = () => {
             <div className="aspect-[3/4] overflow-hidden">
               <img
                 src={skinCareImg}
-                alt="Premium skincare texture"
+                alt="Lumina skincare philosophy"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-[1.5s]"
               />
             </div>
@@ -50,8 +67,8 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="font-display text-4xl md:text-5xl font-medium text-foreground leading-tight mb-8"
             >
-              Where innovation meets{" "}
-              <em className="italic font-normal text-accent">artistry</em>
+              Intentional &{" "}
+              <em className="italic font-normal text-accent">Luxurious</em>
             </motion.h2>
             <motion.div
               initial={{ scaleX: 0 }}
@@ -63,11 +80,17 @@ const Index = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.7 }}
+              className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed mb-6"
+            >
+              Lumina was created with one belief in mind — skincare should be both intentional and luxurious.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.9 }}
               className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed"
             >
-              Our brand blends high-performance beauty products with professional
-              treatments, offering a complete luxury experience — from product to
-              result.
+              We combine refined artistry with clean, effective formulations to elevate everyday self-care into a radiant experience.
             </motion.p>
           </div>
         </div>
@@ -76,47 +99,62 @@ const Index = () => {
       <FeaturesSection />
       <SkincareSimulation />
 
-      {/* CTA Section */}
-      <section className="py-40 px-6 bg-background text-center">
-        <div className="max-w-3xl mx-auto">
+      {/* Testimonials Section */}
+      <section className="py-32 px-6 bg-card">
+        <div className="max-w-5xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="font-sans-ui text-xs tracking-[0.4em] uppercase text-muted-foreground text-center mb-4"
+          >
+            Social Proof
+          </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="font-display text-4xl md:text-6xl font-medium leading-tight mb-8"
+            transition={{ delay: 0.2 }}
+            className="font-display text-4xl md:text-5xl text-center font-medium mb-4"
           >
-            Complete skincare,{" "}
-            <em className="italic font-normal text-accent">real results</em>
+            Loved by Our <em className="italic font-normal text-accent">Community</em>
           </motion.h2>
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="luxury-divider mb-10"
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="luxury-divider mb-16"
           />
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/products">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                className="px-10 py-4 bg-primary text-primary-foreground font-sans-ui text-xs tracking-[0.3em] uppercase hover:bg-primary/90 transition-colors duration-500"
+
+          <div className="grid md:grid-cols-3 gap-10">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={t.author}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 + i * 0.15, duration: 0.8 }}
+                className="text-center p-8 border border-border/50 bg-background"
               >
-                Explore Our Full Skincare Collection →
-              </motion.button>
-            </Link>
-            <Link to="/treatments">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                className="px-10 py-4 border border-foreground/30 text-foreground font-sans-ui text-xs tracking-[0.3em] uppercase hover:bg-foreground/5 transition-colors duration-500"
-              >
-                Book a Treatment →
-              </motion.button>
-            </Link>
+                <div className="flex justify-center gap-1 mb-6">
+                  {[...Array(5)].map((_, s) => (
+                    <Star key={s} size={14} className="fill-accent text-accent" />
+                  ))}
+                </div>
+                <p className="font-body text-lg text-foreground/80 leading-relaxed mb-6 italic">
+                  "{t.quote}"
+                </p>
+                <p className="font-sans-ui text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
+                  — {t.author}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
+      <ClosingSection />
       <Footer />
     </main>
   );

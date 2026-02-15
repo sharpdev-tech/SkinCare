@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const ClosingSection = () => {
   return (
@@ -11,7 +12,7 @@ const ClosingSection = () => {
           transition={{ duration: 1 }}
           className="font-sans-ui text-xs tracking-[0.4em] uppercase text-muted-foreground mb-6"
         >
-          Timeless Beauty
+          Your Ritual Awaits
         </motion.p>
 
         <motion.h2
@@ -21,10 +22,8 @@ const ClosingSection = () => {
           transition={{ duration: 1, delay: 0.2 }}
           className="font-display text-4xl md:text-6xl font-medium leading-tight mb-8"
         >
-          Makeup that doesn't just look beautiful —{" "}
-          <em className="italic font-normal text-accent">
-            it moves, feels, and inspires
-          </em>
+          Elevate Your Skincare{" "}
+          <em className="italic font-normal text-accent">Ritual</em>
         </motion.h2>
 
         <motion.div
@@ -42,21 +41,22 @@ const ClosingSection = () => {
           transition={{ duration: 1, delay: 0.8 }}
           className="font-body text-xl text-muted-foreground leading-relaxed mb-12"
         >
-          From luxurious packaging to a curated digital experience, every detail
-          is thoughtfully designed to reflect exclusivity, trust, and timeless
-          beauty.
+          Experience the art of radiant skin with Lumina.
         </motion.p>
 
-        <motion.button
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 1 }}
-          whileHover={{ scale: 1.03 }}
-          className="px-12 py-4 bg-primary text-primary-foreground font-sans-ui text-xs tracking-[0.3em] uppercase hover:bg-primary/90 transition-colors duration-500"
         >
-          Explore Collection
-        </motion.button>
+          <Link
+            to="/products"
+            className="inline-block px-12 py-4 bg-primary text-primary-foreground font-sans-ui text-xs tracking-[0.3em] uppercase hover:bg-primary/90 transition-colors duration-500"
+          >
+            Shop Now
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

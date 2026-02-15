@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import heroImg from "@/assets/face-mask.jpg";
 
 const HeroSection = () => {
@@ -20,7 +21,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-sans-ui text-xs tracking-[0.4em] uppercase text-primary-foreground/70 mb-8"
         >
-          Luxury Beauty Collection
+          Radiance · Artistry · Elevated
         </motion.p>
 
         <motion.h1
@@ -29,9 +30,9 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.5 }}
           className="font-display text-5xl md:text-7xl lg:text-8xl font-medium text-primary-foreground leading-[1.1] mb-6 text-gold-glow"
         >
-          Luxury Beauty,
+          Radiance · Artistry ·
           <br />
-          <em className="italic font-normal">Perfected</em>
+          <em className="italic font-normal">Elevated</em>
         </motion.h1>
 
         <motion.div
@@ -45,10 +46,23 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="font-body text-xl md:text-2xl text-primary-foreground/80 leading-relaxed max-w-xl mx-auto"
+          className="font-body text-xl md:text-2xl text-primary-foreground/80 leading-relaxed max-w-xl mx-auto mb-10"
         >
-          Complete skincare solutions for every skin concern
+          Luxury skincare crafted with clean, high-performance ingredients to reveal your natural radiance.
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.5 }}
+        >
+          <Link
+            to="/products"
+            className="inline-block px-12 py-4 bg-primary text-primary-foreground font-sans-ui text-xs tracking-[0.3em] uppercase hover:bg-primary/90 transition-colors duration-500"
+          >
+            Shop the Collection
+          </Link>
+        </motion.div>
       </div>
 
       <motion.div
