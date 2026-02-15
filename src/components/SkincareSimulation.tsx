@@ -86,21 +86,24 @@ const SkincareSimulation = () => {
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
   const [showAfter, setShowAfter] = useState(false);
 
-  const currentImage = selectedProduct
-    ? showAfter
+  // Determine which image to show:
+  // - Hovering (not clicked): show "before" (problem skin)
+  // - Clicked: show "after" (improved skin)
+  // - Nothing: show natural skin
+  const hoveredOnly = hoveredProduct && (!selectedProduct || selectedProduct.id !== hoveredProduct);
+  const hoveredProductObj = hoveredOnly ? products.find(p => p.id === hoveredProduct) : null;
+
+  const currentImage = hoveredProductObj
+    ? hoveredProductObj.beforeImage
+    : selectedProduct
       ? selectedProduct.afterImage
-      : selectedProduct.beforeImage
-    : skinNatural;
+      : skinNatural;
+
+  const isShowingAfter = !hoveredProductObj && !!selectedProduct;
 
   const handleSelectProduct = (product: Product) => {
-    if (selectedProduct?.id === product.id) {
-      // Toggle after state
-      setShowAfter((prev) => !prev);
-      return;
-    }
     setSelectedProduct(product);
-    setShowAfter(false);
-    setTimeout(() => setShowAfter(true), 600);
+    setShowAfter(true);
   };
 
   const handleReset = () => {
@@ -228,7 +231,7 @@ const SkincareSimulation = () => {
 
                   {/* Status overlay */}
                   <AnimatePresence>
-                    {selectedProduct && (
+                    {(hoveredProductObj || selectedProduct) && (
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -236,11 +239,11 @@ const SkincareSimulation = () => {
                         className="absolute bottom-0 left-0 right-0 glass-panel px-5 py-4"
                       >
                         <p className="font-sans-ui text-[10px] tracking-[0.3em] uppercase text-accent mb-1">
-                          {showAfter ? "After" : "Before"} — {selectedProduct.area}
+                          {hoveredProductObj ? "Before" : "After"} — {(hoveredProductObj || selectedProduct)!.area}
                         </p>
-                        {showAfter && (
+                        {isShowingAfter && (
                           <p className="font-body text-sm text-foreground/80">
-                            {selectedProduct.feedback}
+                            {selectedProduct!.feedback}
                           </p>
                         )}
                       </motion.div>
@@ -251,35 +254,14 @@ const SkincareSimulation = () => {
                 {/* Controls below face */}
                 <div className="flex items-center justify-center gap-4 mt-6">
                   {selectedProduct && (
-                    <>
-                      <button
-                        onClick={() => setShowAfter(false)}
-                        className={`font-sans-ui text-xs tracking-[0.2em] uppercase px-4 py-2 transition-colors duration-300 ${
-                          !showAfter
-                            ? "text-foreground border-b border-accent"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
-                        Before
-                      </button>
-                      <button
-                        onClick={() => setShowAfter(true)}
-                        className={`font-sans-ui text-xs tracking-[0.2em] uppercase px-4 py-2 transition-colors duration-300 ${
-                          showAfter
-                            ? "text-foreground border-b border-accent"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
-                        After
-                      </button>
-                      <button
-                        onClick={handleReset}
-                        className="ml-2 text-muted-foreground hover:text-foreground transition-colors"
-                        title="Reset to natural skin"
-                      >
-                        <RotateCcw size={16} />
-                      </button>
-                    </>
+                    <button
+                      onClick={handleReset}
+                      className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 font-sans-ui text-xs tracking-[0.2em] uppercase"
+                      title="Reset to natural skin"
+                    >
+                      <RotateCcw size={16} />
+                      Reset
+                    </button>
                   )}
                 </div>
               </div>
@@ -330,14 +312,12 @@ const SkincareSimulation = () => {
                   exit={{ opacity: 0 }}
                   className="absolute bottom-0 left-0 right-0 glass-panel px-4 py-3"
                 >
-                  <p className="font-sans-ui text-[10px] tracking-[0.3em] uppercase text-accent mb-1">
-                    {showAfter ? "After" : "Before"} — {selectedProduct.area}
-                  </p>
-                  {showAfter && (
-                    <p className="font-body text-sm text-foreground/80">
-                      {selectedProduct.feedback}
-                    </p>
-                  )}
+                   <p className="font-sans-ui text-[10px] tracking-[0.3em] uppercase text-accent mb-1">
+                     After — {selectedProduct.area}
+                   </p>
+                   <p className="font-body text-sm text-foreground/80">
+                     {selectedProduct.feedback}
+                   </p>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -347,30 +327,11 @@ const SkincareSimulation = () => {
           {selectedProduct && (
             <div className="flex items-center justify-center gap-4 mb-8">
               <button
-                onClick={() => setShowAfter(false)}
-                className={`font-sans-ui text-xs tracking-[0.2em] uppercase px-4 py-2 transition-colors duration-300 ${
-                  !showAfter
-                    ? "text-foreground border-b border-accent"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                Before
-              </button>
-              <button
-                onClick={() => setShowAfter(true)}
-                className={`font-sans-ui text-xs tracking-[0.2em] uppercase px-4 py-2 transition-colors duration-300 ${
-                  showAfter
-                    ? "text-foreground border-b border-accent"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                After
-              </button>
-              <button
                 onClick={handleReset}
-                className="ml-2 text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 font-sans-ui text-xs tracking-[0.2em] uppercase"
               >
                 <RotateCcw size={16} />
+                Reset
               </button>
             </div>
           )}
