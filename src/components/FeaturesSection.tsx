@@ -1,20 +1,29 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Leaf, Sparkles, Heart, Users } from "lucide-react";
 import productsImg from "@/assets/products.jpg";
 import spaImg from "@/assets/spa-flat-lay.jpg";
 
 const features = [
   {
-    title: "Rich Pigments",
-    description: "Intense, buildable color that stays vibrant from morning to evening.",
+    icon: Leaf,
+    title: "Clean Ingredients",
+    description: "Thoughtfully selected formulas free from harsh chemicals.",
   },
   {
-    title: "Silky Textures",
-    description: "Weightless formulas that glide effortlessly, feeling like a second skin.",
+    icon: Sparkles,
+    title: "High-Performance Care",
+    description: "Designed to deliver visible, radiant results.",
   },
   {
-    title: "Long-Lasting",
-    description: "Engineered to endure — your look stays flawless through every moment.",
+    icon: Heart,
+    title: "Cruelty-Free Beauty",
+    description: "Never tested on animals.",
+  },
+  {
+    icon: Users,
+    title: "For All Skin Types",
+    description: "Gentle, effective, and inclusive.",
   },
 ];
 
@@ -40,7 +49,7 @@ const FeaturesSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-display text-4xl md:text-5xl text-center font-medium mb-4"
         >
-          The <em className="italic font-normal text-accent">Experience</em>
+          Why <em className="italic font-normal text-accent">Lumina</em>
         </motion.h2>
         <motion.div
           initial={{ scaleX: 0 }}
@@ -49,24 +58,29 @@ const FeaturesSection = () => {
           className="luxury-divider mb-20"
         />
 
-        <div className="grid md:grid-cols-3 gap-12">
-          {features.map((feature, i) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.5 + i * 0.2 }}
-              className="text-center group"
-            >
-              <div className="w-12 h-px bg-accent mx-auto mb-8 group-hover:w-20 transition-all duration-500" />
-              <h3 className="font-display text-2xl font-medium mb-4 text-foreground">
-                {feature.title}
-              </h3>
-              <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
+        <div className="grid md:grid-cols-4 gap-12">
+          {features.map((feature, i) => {
+            const Icon = feature.icon;
+            return (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.5 + i * 0.2 }}
+                className="text-center group"
+              >
+                <div className="w-12 h-12 mx-auto mb-6 flex items-center justify-center rounded-full border border-accent/30 group-hover:border-accent transition-colors duration-500">
+                  <Icon size={20} className="text-accent" />
+                </div>
+                <h3 className="font-display text-xl font-medium mb-3 text-foreground">
+                  {feature.title}
+                </h3>
+                <p className="font-body text-lg text-muted-foreground leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
@@ -83,7 +97,7 @@ const FeaturesSection = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.8 }}
             src={productsImg}
-            alt="Luxury makeup products"
+            alt="Lumina skincare products"
             className="w-full h-full object-cover"
           />
         </motion.div>
