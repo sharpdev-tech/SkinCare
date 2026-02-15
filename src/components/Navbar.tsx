@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -40,10 +41,8 @@ const Navbar = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <Link to="/" className="font-display text-xl font-medium text-foreground">
-            <span className={scrolled ? "text-foreground" : "text-primary-foreground"}>
-              Luxury Makeup
-            </span>
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="Amara Skin" className="h-10" />
           </Link>
 
           {/* Desktop links */}
